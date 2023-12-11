@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
 export "FLUTTER_ROOT=/Users/vedangkarwa/flutter"
-export "FLUTTER_APPLICATION_PATH=/Users/vedangkarwa/App dev/Flutter/language_bot/language_voice_bot"
+export "FLUTTER_APPLICATION_PATH=/Users/vedangkarwa/language_voice_bot"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_TARGET=lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"

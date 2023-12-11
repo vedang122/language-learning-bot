@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:language_voice_bot/pages/chat_detail_page.dart';
+import 'package:language_voice_bot/controller/state_controller.dart';
+import 'package:language_voice_bot/views/home_view.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ChangeNotifierProvider(
+      create: (context) => StateController(), child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -32,7 +35,8 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: ChatDetailPage(),
+      debugShowCheckedModeBanner: false,
+      home: const HomeView(),
     );
   }
 }
