@@ -1,35 +1,30 @@
-import 'dart:collection';
-
 import 'package:flutter/material.dart';
-import 'package:language_voice_bot/models/chat_message.dart';
+import 'package:language_voice_bot/models/language.dart';
+import 'package:language_voice_bot/models/message.dart';
 import 'package:language_voice_bot/utils/constants.dart';
 
-// class StateController {
-//   ValueNotifier<List<ChatMessage>> messages = ValueNotifier<List<ChatMessage>>([
-//     ChatMessage(messageContent: "Hello!", messageType: MessageType.receiver),
-//   ]);
-
-//   void addMessage(String text, MessageType messageType) {
-//     messages.value
-//         .add(ChatMessage(messageContent: text, messageType: messageType));
-//   }
-
-//   void dispose() {
-//     messages.dispose();
-//   }
-// }
-
 class StateController extends ChangeNotifier {
-  final List<ChatMessage> _messages = [
-    ChatMessage(messageContent: "Hello!", messageType: MessageType.receiver),
-  ];
+  Language language;
+  List<Message> messages;
 
-  /// An unmodifiable view of the tects in the chat view.
-  UnmodifiableListView<ChatMessage> get messages =>
-      UnmodifiableListView(_messages);
+  StateController({required this.language, required this.messages});
 
-  void addMessage(String text, MessageType messageType) {
-    _messages.add(ChatMessage(messageContent: text, messageType: messageType));
+  void addMessage(String text, String possibleReply, MessageType messageType) {
+    debugPrint("Added meesage with notifying: { $text, ${messageType.name}}");
+    messages.add(Message(
+        content: text, possibleReply: possibleReply, type: messageType));
     notifyListeners();
+  }
+
+  void addMessageWithoutNotifying(
+      String text, String possibleReply, MessageType messageType) {
+    debugPrint(
+        "Added meesage without notifying: { $text, ${messageType.name}}");
+    messages.add(Message(
+        content: text, possibleReply: possibleReply, type: messageType));
+  }
+
+  List<Message> getMessages() {
+    return messages;
   }
 }
