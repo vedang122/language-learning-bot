@@ -1,11 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:language_voice_bot/controller/state_controller.dart';
+import 'package:language_voice_bot/models/language.dart';
+import 'package:language_voice_bot/models/message.dart';
+import 'package:language_voice_bot/utils/constants.dart';
 import 'package:language_voice_bot/views/home_view.dart';
 import 'package:provider/provider.dart';
 
 void main() {
-  runApp(ChangeNotifierProvider(
-      create: (context) => StateController(), child: const MyApp()));
+  Language language = Language(
+    level: LanguageLevel.beginner,
+    name: "Spanish",
+    scenario: "restaurant",
+  );
+
+  runApp(
+    ChangeNotifierProvider(
+      create: (context) => StateController(
+        language: language,
+        messages: [
+          Message(
+            content: language.getSystemPrompt(),
+            type: MessageType.system,
+            possibleReply: ""
+          ),
+        ],
+      ),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {

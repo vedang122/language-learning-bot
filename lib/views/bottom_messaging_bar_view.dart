@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:language_voice_bot/controller/state_controller.dart';
+import 'package:language_voice_bot/service/ai_service.dart';
 import 'package:language_voice_bot/utils/constants.dart';
 import 'package:provider/provider.dart';
 
@@ -10,6 +11,7 @@ class BottomMessagingBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    debugPrint("Building Bottom bar");
     return Container(
       padding: const EdgeInsets.only(left: 10, bottom: 10, top: 10),
       height: 60,
@@ -54,9 +56,17 @@ class BottomMessagingBar extends StatelessWidget {
               var controller = context.read<StateController>();
               controller.addMessage(
                 textEditingController.text,
-                MessageType.sender,
+                "",
+                MessageType.user,
               );
               textEditingController.clear();
+              fetchAIResponse(controller.messages).then(
+                (aiResponse) => controller.addMessage(
+                  aiResponse.response.message,
+                  aiResponse.response.possibleReply,
+                  MessageType.assistant,
+                ),
+              );
             },
             backgroundColor: Colors.blue,
             elevation: 0,
