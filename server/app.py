@@ -6,7 +6,7 @@ MODEL_TO_USE = "gpt-3.5-turbo"
 MAX_TOKEN = 250
 client = OpenAI(
     # This is the default and can be omitted
-    api_key='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',
+    api_key='API_KEY',
 )
 
 # Request:
