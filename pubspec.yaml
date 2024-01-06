@@ -38,6 +38,9 @@ dependencies:
   http: ^1.1.0
   get_it: ^7.6.4
   provider: ^6.1.1
+  flutter_chat_ui: ^1.6.10
+  flutter_chat_types: ^3.6.2
+  dropdown_button2: ^2.3.9
 
 dev_dependencies:
   flutter_test:

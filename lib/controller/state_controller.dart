@@ -1,30 +1,39 @@
 import 'package:flutter/material.dart';
-import 'package:language_voice_bot/models/language.dart';
 import 'package:language_voice_bot/models/message.dart';
-import 'package:language_voice_bot/utils/constants.dart';
+import 'package:language_voice_bot/service/ai_service.dart';
 
 class StateController extends ChangeNotifier {
-  Language language;
-  List<Message> messages;
+  late String languageToPractise;
 
-  StateController({required this.language, required this.messages});
+  late String languageUserKnow;
 
-  void addMessage(String text, String possibleReply, MessageType messageType) {
-    debugPrint("Added meesage with notifying: { $text, ${messageType.name}}");
-    messages.add(Message(
-        content: text, possibleReply: possibleReply, type: messageType));
-    notifyListeners();
-  }
+  late String languageLevel;
 
-  void addMessageWithoutNotifying(
-      String text, String possibleReply, MessageType messageType) {
-    debugPrint(
-        "Added meesage without notifying: { $text, ${messageType.name}}");
-    messages.add(Message(
-        content: text, possibleReply: possibleReply, type: messageType));
-  }
+  late String situation;
 
-  List<Message> getMessages() {
-    return messages;
+  List<Message> messages = List.empty(growable: true);
+
+  final AIService aiService = AIService();
+
+  // Future<Message> getAIResponse() async {
+  //   try {
+  //     var aiResponse = await aiService.request(this);
+  //     Message message = Message(
+  //         content: aiResponse.response.message,
+  //         type: MessageType.assistant,
+  //         contentTranslation: aiResponse.response.messageTranslation,
+  //         possibleReply: aiResponse.response.possibleReply,
+  //         possibleReplyTranslation:
+  //             aiResponse.response.possibleReplyTranslation);
+  //     addMessage(message);
+  //     return message;
+  //   } catch (error) {
+  //     throw Exception(
+  //         "Seems like Assistant doesn't want to reply back: $error");
+  //   }
+  // }
+
+  void addMessage(Message message) {
+    messages.add(message);
   }
 }

@@ -8,10 +8,9 @@ From the past 1 year, I started developing a passion for learning new languages.
 
 * With system settings of begineer level of Spanish and user is talking to spaker in a restaurant, assistant is responsing back. 
 
-![img](./demo/17-12-2023.gif)
+![img](./demo/05-01-2024.gif)
 
 ## Next Steps
-
 * Give possible response to user to respond with in the next message(so conversation don't die)
 * Enhance translation from language user learning to language user know so that they can learn new words
 * Deploy server(app.py) to lambda instead of running using flask in a local server
