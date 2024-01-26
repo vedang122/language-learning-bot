@@ -1,6 +1,9 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:language_voice_bot/models/message.dart';
 import 'package:language_voice_bot/service/ai_service.dart';
+import 'package:language_voice_bot/utils/constants.dart';
 import 'package:language_voice_bot/views/chat_page.dart';
 import 'package:provider/provider.dart';
 import 'package:language_voice_bot/controller/state_controller.dart';
@@ -35,20 +38,30 @@ class TransitionWidgetState extends State<TransitionWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    String randomFact =
+        "Did you know: ${facts[Random().nextInt(facts.length - 1)]}";
+    return Scaffold(
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            SizedBox(
+            const SizedBox(
               width: 60,
               height: 60,
               child: CircularProgressIndicator(),
             ),
             Padding(
-              padding: EdgeInsets.only(top: 16),
+              padding: const EdgeInsets.only(top: 16),
               child: Text(
-                  'Tip: You can see translation of assistant messages in language you know by double tapping!'),
+                randomFact,
+                textAlign: TextAlign.center,
+                style: const TextStyle(
+                  fontStyle: FontStyle.normal,
+                  fontSize: 16,
+                  fontWeight: FontWeight.bold,
+                ),
+                maxLines: 2,
+              ),
             ),
           ],
         ), // Show a loading indicator
