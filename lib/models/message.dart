@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:language_voice_bot/utils/constants.dart';
 
 class Message {
@@ -24,7 +23,6 @@ class Message {
   }
 
   factory Message.fromJson(Map<String, dynamic> json, MessageType messageType) {
-    debugPrint("Response message: $json");
     return Message(
       content: json['assistant']['message'],
       contentTranslation: json['assistant']['translation'],

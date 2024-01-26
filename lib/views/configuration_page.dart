@@ -40,7 +40,7 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
     );
   }
 
-  DropdownButtonFormField2 getDropDownButtonFormField(
+  Widget getDropDownButtonFormField(
       String hintText, List<String> items, int fieldIndex) {
     return DropdownButtonFormField2<String>(
       isExpanded: true,
@@ -83,16 +83,24 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
           Icons.arrow_drop_down,
           color: Colors.black45,
         ),
-        iconSize: 24,
+        iconSize: 16,
       ),
       dropdownStyleData: DropdownStyleData(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
         ),
+        scrollPadding: const EdgeInsets.symmetric(horizontal: 16),
+        maxHeight: 200,
       ),
       menuItemStyleData: const MenuItemStyleData(
         padding: EdgeInsets.symmetric(horizontal: 16),
       ),
+    );
+  }
+
+  Widget getSpaceWidget() {
+    return const SizedBox(
+      height: 15,
     );
   }
 
@@ -108,29 +116,36 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              getTextFormField("Enter your name"),
-              const SizedBox(
-                height: 30,
+              const Text(
+                "Roleplay Lingo",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.normal,
+                  fontSize: 20,
+                ),
               ),
+              getSpaceWidget(),
               getDropDownButtonFormField(
                   "Language you want to practise?", languages, 0),
-              const SizedBox(
-                height: 30,
-              ),
+              getSpaceWidget(),
               getDropDownButtonFormField(
                   "Language you already know?", languages, 1),
-              const SizedBox(
-                height: 30,
-              ),
+              getSpaceWidget(),
               getDropDownButtonFormField(
                   "Language level you want to practise?", levels, 2),
-              const SizedBox(
-                height: 30,
-              ),
-              getDropDownButtonFormField(
-                  "Situation you want to practise?", situations, 3),
-              const SizedBox(
-                height: 30,
+              getSpaceWidget(),
+              getDropDownButtonFormField("Roleplay scenario?", situations, 3),
+              getSpaceWidget(),
+              const Text(
+                rules,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  fontStyle: FontStyle.italic,
+                  fontSize: 14,
+                  letterSpacing: 1,
+                ),
               ),
               TextButton(
                 onPressed: () async {
@@ -149,7 +164,14 @@ class _ConfigurationPageState extends State<ConfigurationPage> {
                     ),
                   );
                 },
-                child: const Text('Start talking to your language companion'),
+                child: const Text(
+                  'Start conversation',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
             ],
           ),
